@@ -19,12 +19,12 @@ install:
 - travis_retry composer install --no-interaction --prefer-source
 
 before_script:
-- mkdir -p build/logs
+- mkdir -p var/logs
 
 script:
-- ./bin/parallel-lint src test
-- ./bin/phpunit --verbose --coverage-clover build/logs/clover.xml
-- ./bin/phpcs src --standard=psr2 -sp
+- ./bin/parallel-lint src tests
+- travis_retry composer test:php:cover
+- travis_retry composer cgl
 
 after_success:
 - travis_retry php bin/coveralls
