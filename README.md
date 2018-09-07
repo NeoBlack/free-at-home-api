@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/NeoBlack/free-at-home-api.svg?branch=master)](https://travis-ci.org/NeoBlack/free-at-home-api)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NeoBlack/free-at-home-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/NeoBlack/free-at-home-api/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/NeoBlack/free-at-home-api/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/NeoBlack/free-at-home-api/?branch=master)
 
 # Busch Jäger free@home API Client Library
 
