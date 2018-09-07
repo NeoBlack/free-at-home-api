@@ -1,0 +1,7 @@
+# Composer
+bin/
+var/
+vendor/
+composer.lock
+.php_cs.cache
+.DS_Store

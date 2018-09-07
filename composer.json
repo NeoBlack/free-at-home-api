@@ -1,0 +1,64 @@
+{
+    "name": "neoblack/free-at-home-api",
+    "description": "Busch Jäger free@home API Client Library",
+    "license": "MIT",
+    "config": {
+        "prefer-stable": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "discard-changes": true,
+        "bin-dir": "bin",
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^7.2",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^2.3|^3.0"
+    },
+    "keywords": [
+        "free@home",
+        "authorization",
+        "authentication",
+        "api"
+    ],
+    "authors": [
+        {
+            "name": "Frank Nägler",
+            "homepage": "https://naegler.hamburg",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "NeoBlack\\FreeAtHomeApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NeoBlack\\FreeAtHomeApi\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test:php:unit": [
+            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --testsuite \"Unit Test Suite\""
+        ],
+        "test:php:functional": [
+            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --testsuite \"Functional Test Suite\""
+        ],
+        "test:php:cover": [
+            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --coverage-clover var/logs/coverage.xml --coverage-html var/logs/coverage/"
+        ],
+        "test": [
+            "@test:php:functional",
+            "@test:php:unit"
+        ],
+        "cgl": [
+            "php-cs-fixer fix --config build/.php_cs.dist --format=junit > var/logs/php-cs-fixer.xml"
+        ]
+    }
+}
