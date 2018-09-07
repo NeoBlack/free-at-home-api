@@ -16,6 +16,8 @@
         "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "jakub-onderka/php-parallel-lint": "^1.0",
         "phpunit/phpunit": "^6.0",
         "roave/security-advisories": "dev-master",
         "squizlabs/php_codesniffer": "^2.3|^3.0"
@@ -56,6 +58,9 @@
         "test": [
             "@test:php:functional",
             "@test:php:unit"
+        ],
+        "lint": [
+            "parallel-lint src tests"
         ],
         "cgl": [
             "php-cs-fixer fix --config build/.php_cs.dist --format=junit > var/logs/php-cs-fixer.xml"

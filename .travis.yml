@@ -22,9 +22,9 @@ before_script:
 - mkdir -p var/logs
 
 script:
-- ./bin/parallel-lint src tests
-- travis_retry composer test:php:cover
+- travis_retry composer lint
 - travis_retry composer cgl
+- travis_retry composer test:php:cover
 
 after_success:
 - travis_retry php bin/coveralls
