@@ -4,7 +4,9 @@
 
 # Busch Jäger free@home API Client Library
 
-The free@home API Client Library enables you to work with the Busch Jäger free@home AccessPoint-
+The free@home API Client Library enables you to work with the Busch Jäger free@home AccessPoint.
+
+**/!\\ THIS LIBRARY IS STILL IN DEVELOPMENT AND NOT READY FOR USE /!\\**
 
 ## Requirements
 * [PHP 7.2.0 or higher](http://www.php.net/)
