@@ -51,17 +51,17 @@
     },
     "scripts": {
         "test:php:unit": [
-            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --testsuite \"Unit Test Suite\""
+            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit-unit.xml --testsuite \"Unit Test Suite\""
         ],
         "test:php:functional": [
-            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --testsuite \"Functional Test Suite\""
+            "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit-functional.xml --testsuite \"Functional Test Suite\""
         ],
         "test:php:cover": [
             "phpunit -c build/phpunit.xml --log-junit var/logs/phpunit.xml --coverage-clover var/logs/coverage.xml --coverage-html var/logs/coverage/"
         ],
         "test": [
-            "@test:php:functional",
-            "@test:php:unit"
+            "@test:php:unit",
+            "@test:php:functional"
         ],
         "lint": [
             "parallel-lint src tests"
