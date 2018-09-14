@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace NeoBlack\FreeAtHomeApi;
 
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use NeoBlack\FreeAtHomeApi\Entity\Credentials;
@@ -36,8 +37,14 @@ class Client
      */
     protected $client;
 
+    public function __construct(ClientInterface $client = null)
+    {
+        $this->client = $client;
+    }
+
     public function withEndpoint(string $endpoint): self
     {
+        /** @noinspection BypassedUrlValidationInspection */
         if (!filter_var($endpoint, FILTER_VALIDATE_URL)) {
             throw new InvalidEndpointException('the endpoint has an invalid format', 1536354983);
         }
@@ -59,9 +66,11 @@ class Client
         if ($this->credentials === null) {
             throw new MissingCredentialsException('no credentials is set, call withCredentials() before getClient()', 1536354568);
         }
-        $this->client = new \GuzzleHttp\Client([
-            'base_uri' => $this->endpoint,
-        ]);
+        if ($this->client === null) {
+            $this->client = new \GuzzleHttp\Client([
+                'base_uri' => $this->endpoint,
+            ]);
+        }
         return $this;
     }
 

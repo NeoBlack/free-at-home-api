@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /*
@@ -14,10 +15,19 @@ use NeoBlack\FreeAtHomeApi\Client;
 use NeoBlack\FreeAtHomeApi\Exception\InvalidEndpointException;
 use NeoBlack\FreeAtHomeApi\Exception\MissingCredentialsException;
 use NeoBlack\FreeAtHomeApi\Exception\MissingEndpointException;
+use NeoBlack\FreeAtHomeApi\Test\Unit\Fixtures\HttpClient;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
+    protected function createTestClient(): Client
+    {
+        return (new Client(new HttpClient()))
+            ->withEndpoint('https://localhost')
+            ->withCredentials('foo', 'bar')
+            ->getClient();
+    }
+
     /**
      * @test
      */
@@ -79,5 +89,37 @@ class ClientTest extends TestCase
             ->withEndpoint('https://localhost')
             ->withCredentials('foo', 'bar')
             ->getClient());
+    }
+
+    /**
+     * @test
+     */
+    public function getDevices(): void
+    {
+        $this->assertSame([], $this->createTestClient()->getDevices());
+    }
+
+    /**
+     * @test
+     */
+    public function getDevice(): void
+    {
+        $this->assertSame([], $this->createTestClient()->getDevice('4711-foo-bar'));
+    }
+
+    /**
+     * @test
+     */
+    public function updateDevice(): void
+    {
+        $this->assertSame([], $this->createTestClient()->updateDevice('4711-foo-bar', ['name' => 'New Name']));
+    }
+
+    /**
+     * @test
+     */
+    public function deleteDevice(): void
+    {
+        $this->assertSame([], $this->createTestClient()->deleteDevice('4711-foo-bar'));
     }
 }
