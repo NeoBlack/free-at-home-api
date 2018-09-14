@@ -75,15 +75,50 @@ class Client
     }
 
     /**
-     * @param Route $route
+     * @param string $id
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function callApi(Route $route): array
+    public function getDevice(string $id): array
+    {
+        return $this->callApi((new Router())->get(Router::DEVICE_GET, ['id' => $id]));
+    }
+
+    /**
+     * @param string $id
+     * @param array $data
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateDevice(string $id, array $data): array
+    {
+        return $this->callApi((new Router())->get(Router::DEVICE_UPDATE, ['id' => $id]), $data);
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deleteDevice(string $id): array
+    {
+        return $this->callApi((new Router())->get(Router::DEVICE_DELETE, ['id' => $id]));
+    }
+
+    /**
+     * @param Route $route
+     * @param array $data
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function callApi(Route $route, array $data = []): array
     {
         $options = [
             'headers' => [],
         ];
+        if (!empty($data)) {
+            $options['body'] = json_encode($data);
+        }
         try {
             $response = $this->client->request($route->getMethod(), $route->getPath(), $options);
         } catch (ClientException | ServerException $exception) {

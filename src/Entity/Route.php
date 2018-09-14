@@ -19,23 +19,18 @@ class Route
     public const METHOD_PUT = 'PUT';
     public const METHOD_DELETE = 'DELETE';
 
-    private $allowedMethods = [
-        self::METHOD_GET,
-        self::METHOD_POST,
-        self::METHOD_PUT,
-        self::METHOD_DELETE
-    ];
-
     protected $path;
     protected $method;
+    protected $parameters;
 
-    public function __construct(string $path, string $method)
+    public function __construct(string $path, string $method, array $parameters = [])
     {
-        if (!\in_array($method, $this->allowedMethods, true)) {
+        if (!\in_array($method, [self::METHOD_GET, self::METHOD_POST, self::METHOD_PUT, self::METHOD_DELETE], true)) {
             throw new MethodNotAllowedException('The method "' . $method . '" is not allowed', 1536352833);
         }
         $this->path = $path;
         $this->method = $method;
+        $this->parameters = $parameters;
     }
 
     /**
@@ -43,7 +38,11 @@ class Route
      */
     public function getPath(): string
     {
-        return $this->path;
+        $tmpPath = $this->path;
+        foreach ($this->parameters as $key => $value) {
+            $tmpPath = str_replace('{' . $key . '}', $value, $tmpPath);
+        }
+        return $tmpPath;
     }
 
     /**

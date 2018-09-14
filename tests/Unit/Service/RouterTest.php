@@ -21,6 +21,9 @@ class RouterTest extends TestCase
     {
         return [
             'identifier: ' . Router::DEVICES_GET  => [Router::DEVICES_GET, '/devices', Route::METHOD_GET],
+            'identifier: ' . Router::DEVICE_GET  => [Router::DEVICE_GET, '/device/{id}', Route::METHOD_GET],
+            'identifier: ' . Router::DEVICE_UPDATE  => [Router::DEVICE_UPDATE, '/device/{id}', Route::METHOD_PUT],
+            'identifier: ' . Router::DEVICE_DELETE  => [Router::DEVICE_DELETE, '/device/{id}', Route::METHOD_DELETE],
         ];
     }
 
