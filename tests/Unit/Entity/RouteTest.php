@@ -43,7 +43,7 @@ class RouteTest extends TestCase
     public function objectCanNotBeCreatedWithWrongMethod(): void
     {
         $this->expectException(MethodNotAllowedException::class);
-        $route = new Route('/api/foo', 'FOO');
+        new Route('/api/foo', 'FOO');
     }
 
     /**
@@ -53,6 +53,6 @@ class RouteTest extends TestCase
     public function objectCanNotBeCreatedWithLowerCaseMethods($method): void
     {
         $this->expectException(MethodNotAllowedException::class);
-        $route = new Route('/api/foo', strtolower($method));
+        new Route('/api/foo', strtolower($method));
     }
 }

@@ -47,7 +47,6 @@ class RouterTest extends TestCase
     public function getThrowsExceptionForInvalidIdentifier(): void
     {
         $this->expectException(UnknownRouteException::class);
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $route = (new Router())->get('foo');
+        (new Router())->get('foo');
     }
 }
